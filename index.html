@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aleksa Stokanović – Embedded Software Engineer</title>
+<meta name="description" content="Aleksa Stokanović – Embedded Software Engineer. C/C++, ARM microcontrollers, real-time systems, AUTOSAR, hardware-software integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfbf9;
+    --surface: #ffffff;
+    --text: #1c1f23;
+    --muted: #5d646d;
+    --line: #e6e4df;
+    --accent: #0f6e66;
+    --accent-soft: #e6f2f0;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 16px; -webkit-font-smoothing: antialiased; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* Nav */
+  nav { position: sticky; top: 0; z-index: 10; background: rgba(251,251,249,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .logo { font-family: var(--mono); font-weight: 500; color: var(--text); font-size: 15px; }
+  .logo span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 22px; }
+  nav ul a { color: var(--muted); font-size: 14px; font-weight: 500; }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  /* Hero */
+  .hero { padding: 72px 0 56px; display: grid; grid-template-columns: 1fr 200px; gap: 48px; align-items: center; }
+  .eyebrow { font-family: var(--mono); font-size: 13px; color: var(--accent); margin-bottom: 12px; }
+  h1 { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; margin-bottom: 14px; }
+  .tagline { font-size: 19px; color: var(--muted); margin-bottom: 26px; max-width: 34em; }
+  .photo { width: 200px; height: 200px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; border: 1px solid var(--line); color: var(--text); background: var(--surface); }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { background: #0b5a54; }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* Sections */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 13px; font-family: var(--mono); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 28px; }
+  h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+  p + p { margin-top: 12px; }
+  .lead { font-size: 18px; max-width: 40em; }
+
+  /* Focus chips */
+  .focus { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .chip { font-family: var(--mono); font-size: 12.5px; padding: 4px 10px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .tag { font-family: var(--mono); font-size: 12px; padding: 3px 8px; border-radius: 5px; border: 1px solid var(--line); color: var(--muted); background: var(--bg); }
+
+  /* Projects */
+  .projects { display: grid; gap: 20px; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 26px 28px; }
+  .card .meta { font-size: 14px; color: var(--muted); margin: 4px 0 14px; }
+  .card .meta b { color: var(--text); font-weight: 600; }
+  .card p { color: var(--text); }
+  .card ul { margin: 12px 0 0 18px; }
+  .card li { margin-top: 6px; }
+  .card li::marker { color: var(--accent); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+  .card .links { margin-top: 16px; font-size: 14px; font-weight: 600; }
+  .label { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); padding: 2px 7px; border: 1px solid var(--line); border-radius: 4px; margin-left: 8px; vertical-align: 3px; }
+
+  /* Timeline */
+  .timeline { display: grid; gap: 26px; }
+  .tl-item { display: grid; grid-template-columns: 170px 1fr; gap: 24px; }
+  .tl-date { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 3px; }
+  .tl-item h3 { font-size: 17px; }
+  .tl-item .org { color: var(--muted); font-size: 15px; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; }
+  .skills h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .skills .tags { margin-top: 0; }
+
+  /* Publication */
+  .pub { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--accent); border-radius: 8px; padding: 22px 24px; }
+  .pub .venue { font-size: 14px; color: var(--muted); margin-top: 6px; }
+
+  /* Contact */
+  .contact-list { list-style: none; display: grid; gap: 10px; font-size: 16px; }
+  .contact-list span { font-family: var(--mono); font-size: 13px; color: var(--muted); display: inline-block; width: 90px; }
+
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); font-family: var(--mono); }
+
+  @media (max-width: 720px) {
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 28px; padding: 48px 0 40px; }
+    .photo { width: 120px; height: 120px; order: -1; }
+    h1 { font-size: 34px; }
+    .tagline { font-size: 17px; }
+    .tl-item { grid-template-columns: 1fr; gap: 4px; }
+    .skills { grid-template-columns: 1fr; }
+    .card { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">aleksa<span>.</span>stokanovic</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <header class="hero">
+    <div>
+      <div class="eyebrow">// Embedded Software Engineer</div>
+      <h1>Aleksa Stokanović</h1>
+      <p class="tagline">I write C for ARM microcontrollers and real-time systems, and make software and hardware work together. 4+ years in automotive embedded software, from testing to architecture.</p>
+      <div class="actions">
+        <a class="btn primary" href="cv.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+        <a class="btn" href="https://www.linkedin.com/in/aleksastokanovic" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/aleksastokanovic99" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="mailto:stokanovic.aleksa99@gmail.com">Email</a>
+      </div>
+    </div>
+    <img class="photo" src="photo.jpg" alt="Aleksa Stokanović">
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p class="lead">I am an embedded software engineer from Serbia with more than four years of experience at Continental and Aumovio.</p>
+    <p>I started as a system test engineer, moved into embedded software development, and now work as a software architect leading a five-member team. Along the way I have worked on several automotive ECUs, across the full development cycle.</p>
+    <p>I hold an MSc in Automotive Software from the Faculty of Technical Sciences in Novi Sad. My thesis on machine learning was published at IEEE ZINC 2025. I am most interested in low-level programming, embedded Linux, operating systems, wireless communication and AI on edge devices.</p>
+    <div class="focus">
+      <span class="chip">C / C++</span>
+      <span class="chip">ARM MCUs</span>
+      <span class="chip">Real-time systems</span>
+      <span class="chip">AUTOSAR</span>
+      <span class="chip">HW/SW integration</span>
+      <span class="chip">Edge AI</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+
+      <article class="card">
+        <h3>Automotive embedded software <span class="label">Professional</span></h3>
+        <div class="meta"><b>Continental, Aumovio</b> · May 2022 – present</div>
+        <p>Embedded software for automotive ECUs, built to automotive quality and safety standards. Over three roles I have covered the full development cycle: testing, implementation and architecture.</p>
+        <ul>
+          <li><b>Architecture:</b> software architecture design, low-level integration on ARM microcontrollers, and leading a five-member team.</li>
+          <li><b>Development:</b> embedded C features close to the hardware, with requirements, design specifications and on-target debugging.</li>
+          <li><b>Testing:</b> integration and system testing, with automated test scenarios on real hardware.</li>
+        </ul>
+        <div class="tags"><span class="tag">C</span><span class="tag">AUTOSAR Classic</span><span class="tag">ARM MCU</span><span class="tag">RTOS</span><span class="tag">MISRA C</span><span class="tag">ASPICE</span><span class="tag">CAPL / CANoe</span></div>
+        <div class="links" style="color:var(--muted);font-weight:500;">Project details are covered by confidentiality agreements.</div>
+      </article>
+
+      <article class="card">
+        <h3>ESP32 Portfolio Tracker <span class="label">Personal</span></h3>
+        <div class="meta"><b>Sole developer</b> · Nov 2026</div>
+        <p>A standalone device that tracks an investment portfolio. It shows live prices on a touch display and is managed from a browser on the local network.</p>
+        <ul>
+          <li>Firmware for an ESP32 with a touch display UI.</li>
+          <li>Wi-Fi client that fetches live prices.</li>
+          <li>Embedded REST API and web UI served from the device, for managing trades.</li>
+          <li>Power-loss-safe storage on LittleFS, so data survives a sudden power cut.</li>
+        </ul>
+        <div class="tags"><span class="tag">C/C++</span><span class="tag">ESP32</span><span class="tag">Wi-Fi</span><span class="tag">REST API</span><span class="tag">LittleFS</span></div>
+        <div class="links"><a href="https://github.com/aleksastokanovic99/esp32-portfolio-tracker" target="_blank" rel="noopener">View on GitHub →</a></div>
+      </article>
+
+      <article class="card">
+        <h3>Dataset reduction for object detection <span class="label">Research</span></h3>
+        <div class="meta"><b>MSc thesis</b> · Faculty of Technical Sciences, Novi Sad · 2025</div>
+        <p>Training object detection models on large image datasets is slow and costly. The thesis explores using ChatGPT to reduce the training dataset, cutting training effort while keeping detection quality.</p>
+        <ul>
+          <li>Designed the dataset reduction approach and the experiments around it.</li>
+          <li>Trained and evaluated convolutional object detection models on full and reduced datasets.</li>
+          <li>Published the findings at IEEE ZINC 2025.</li>
+        </ul>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Deep learning</span><span class="tag">CNNs</span><span class="tag">Object detection</span><span class="tag">LLMs</span></div>
+        <div class="links"><a href="https://doi.org/10.1109/ZINC65316.2025.11103554" target="_blank" rel="noopener">Read the paper (IEEE) →</a></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Nov 2025 – present</div>
+        <div><h3>Software Architect</h3><div class="org">Aumovio</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Dec 2023 – Nov 2025</div>
+        <div><h3>Software Engineer</h3><div class="org">Continental</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">May 2022 – Dec 2023</div>
+        <div><h3>System Test Engineer</h3><div class="org">Continental</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2022 – 2025</div>
+        <div><h3>MSc, Automotive Software</h3><div class="org">Faculty of Technical Sciences, University of Novi Sad</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2018 – 2022</div>
+        <div><h3>BSc, Electrical Engineering and Computer Science</h3><div class="org">Faculty of Technical Sciences, University of Novi Sad</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publication">
+    <h2>Publication</h2>
+    <div class="pub">
+      <h3><a href="https://doi.org/10.1109/ZINC65316.2025.11103554" target="_blank" rel="noopener">Optimizing Object Detection Model Training Using ChatGPT for Dataset Reduction</a></h3>
+      <div class="venue">IEEE ZINC Conference, 2025 · DOI: 10.1109/ZINC65316.2025.11103554</div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div><h4>Languages</h4><div class="tags"><span class="tag">C</span><span class="tag">C++</span><span class="tag">Python</span><span class="tag">CAPL</span></div></div>
+      <div><h4>Embedded</h4><div class="tags"><span class="tag">ARM MCUs</span><span class="tag">AUTOSAR</span><span class="tag">RTOS</span><span class="tag">Embedded Linux</span><span class="tag">ESP32</span></div></div>
+      <div><h4>Communication</h4><div class="tags"><span class="tag">CAN</span><span class="tag">SPI</span><span class="tag">I2C</span><span class="tag">UART</span><span class="tag">TCP/IP</span><span class="tag">BLE</span><span class="tag">UWB</span><span class="tag">NFC</span></div></div>
+      <div><h4>Tools</h4><div class="tags"><span class="tag">Git</span><span class="tag">Linux</span><span class="tag">WinIdea</span><span class="tag">CANoe</span><span class="tag">Jenkins</span><span class="tag">Jira</span></div></div>
+      <div><h4>Standards &amp; process</h4><div class="tags"><span class="tag">MISRA C</span><span class="tag">CERT C</span><span class="tag">ASPICE</span><span class="tag">V-Model</span><span class="tag">Agile</span></div></div>
+      <div><h4>AI / ML</h4><div class="tags"><span class="tag">Deep learning</span><span class="tag">CNNs</span><span class="tag">Computer vision</span><span class="tag">Model training</span></div></div>
+    </div>
+    <p style="margin-top:28px;color:var(--muted);font-size:15px;">Certifications: DeepLearning.AI Machine Learning and Deep Learning Specializations (2025) · ISTQB Certified Tester Foundation Level (2023) · Cambridge C1 Advanced (2022) · Embedded Linux Programming, RT-RK (2021)</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p class="lead" style="margin-bottom:20px;">Open to embedded software roles. The fastest way to reach me is email.</p>
+    <ul class="contact-list">
+      <li><span>email</span><a href="mailto:stokanovic.aleksa99@gmail.com">stokanovic.aleksa99@gmail.com</a></li>
+      <li><span>linkedin</span><a href="https://www.linkedin.com/in/aleksastokanovic" target="_blank" rel="noopener">linkedin.com/in/aleksastokanovic</a></li>
+      <li><span>github</span><a href="https://github.com/aleksastokanovic99" target="_blank" rel="noopener">github.com/aleksastokanovic99</a></li>
+      <li><span>location</span>Serbia</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Aleksa Stokanović</div>
+</footer>
+
+</body>
+</html>
